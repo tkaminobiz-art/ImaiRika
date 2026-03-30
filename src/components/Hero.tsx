@@ -2,77 +2,61 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { HERO_CONTENT } from '@/lib/data';
+import NewsTicker from '@/components/NewsTicker';
+import { HERO_CONTENT, HERO_IMAGE, NEWS_TICKER_ITEMS } from '@/lib/data';
 
 export default function Hero() {
+  const slogan = HERO_CONTENT.slogan;
+  const accent = HERO_CONTENT.sloganAccent;
+  const beforeAccent = slogan.replace(accent, '');
+
   return (
-    <section className="relative w-full bg-gradient-to-b from-cdp-blue/5 to-white">
-      <div className="min-h-[500px] flex items-center justify-center relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 right-10 w-96 h-96 bg-cdp-blue rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-cdp-cyan rounded-full blur-3xl"></div>
-        </div>
+    <section className="relative w-full overflow-hidden bg-[#f5f2eb]">
+      {/* 和柄風の淡いパターン（CSSのみ） */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c2 8 8 14 16 16-8 2-14 8-16 16-2-8-8-14-16-16 8-2 14-8 16-16z' fill='%23004098'/%3E%3C/svg%3E")`,
+          backgroundSize: '48px 48px',
+        }}
+        aria-hidden
+      />
 
-        {/* Hero content */}
-        <div className="relative z-10 w-full max-w-content mx-auto px-6 py-16 md:py-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Left: Text content */}
-            <div className="flex flex-col justify-center space-y-6">
-              <div>
-                <h1 className="text-4xl md:text-5xl font-black text-cdp-blue mb-4 leading-tight">
-                  {HERO_CONTENT.slogan}
-                </h1>
-                <p className="text-xl md:text-2xl text-text-dark font-semibold">
-                  {HERO_CONTENT.name}
-                </p>
-              </div>
+      <div className="relative z-[1] flex min-h-[min(100vh,720px)] flex-col md:min-h-[500px]">
+        <div className="flex flex-1 flex-col md:flex-row">
+          {/* モバイル: 写真上 */}
+          <div className="relative order-1 h-[52vh] min-h-[280px] w-full md:order-2 md:h-auto md:min-h-[420px] md:w-[58%]">
+            <Image
+              src={HERO_IMAGE}
+              alt="今井りか"
+              fill
+              priority
+              className="object-cover object-[center_20%]"
+              sizes="(max-width: 768px) 100vw, 58vw"
+            />
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#004098]/90 to-transparent md:hidden" />
+          </div>
 
-              <p className="text-lg text-text-body leading-relaxed max-w-md">
-                {HERO_CONTENT.subtitle}
-              </p>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <a
-                  href="/profile"
-                  className="inline-flex items-center justify-center px-8 py-3 bg-cdp-blue text-white font-bold rounded-lg hover:opacity-90 transition-opacity"
-                >
-                  プロフィールを見る
-                </a>
-                <a
-                  href="/policy"
-                  className="inline-flex items-center justify-center px-8 py-3 bg-cdp-yellow text-cdp-blue font-bold rounded-lg hover:opacity-90 transition-opacity"
-                >
-                  政策について
-                </a>
-              </div>
-            </div>
-
-            {/* Right: Hero image placeholder */}
-            <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-cdp-blue/20 to-cdp-cyan/20 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">📸</div>
-                  <p className="text-text-body font-semibold">
-                    カスタムヒーロー画像
-                  </p>
-                </div>
-              </div>
-              {/* Image will be replaced with actual hero image */}
-              <Image
-                src="/images/hero/hero-placeholder.jpg"
-                alt="今井りか"
-                fill
-                className="object-cover opacity-0"
-                priority
-              />
-            </div>
+          {/* テキストブロック */}
+          <div className="relative order-2 flex flex-1 flex-col justify-center bg-gradient-to-br from-cdp-blue from-40% to-[#003070] px-6 py-10 text-white md:order-1 md:w-[42%] md:px-10 md:py-16">
+            <p className="mb-2 text-xs font-medium text-white/85 md:text-sm">
+              {HERO_CONTENT.party}
+            </p>
+            <h1 className="font-black leading-[1.15] tracking-tight [font-size:clamp(1.75rem,5vw,3.75rem)]">
+              <span className="block">{beforeAccent}</span>
+              <span className="relative inline-block">
+                <span className="relative z-[1]">{accent}</span>
+                <span
+                  className="absolute -bottom-1 left-0 right-0 h-2 bg-cdp-yellow/90 md:h-2.5"
+                  aria-hidden
+                />
+              </span>
+            </h1>
+            <p className="mt-6 text-base font-bold md:text-xl">{HERO_CONTENT.name}</p>
           </div>
         </div>
 
-        {/* Bottom accent line */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cdp-red via-cdp-yellow to-cdp-cyan"></div>
+        <NewsTicker items={NEWS_TICKER_ITEMS} />
       </div>
     </section>
   );

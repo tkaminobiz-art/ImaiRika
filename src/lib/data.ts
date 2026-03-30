@@ -1,13 +1,14 @@
 /**
- * Content data for the Imai Rika website
+ * コンテンツデータ — PROJECT_SPEC セクション12 + IMAGE_CLASSIFICATION パス
  */
 
 export interface PolicyCard {
   id: string;
   title: string;
+  sub: string;
   description: string;
   image: string;
-  link?: string;
+  link: string;
 }
 
 export interface ActivityCard {
@@ -15,7 +16,8 @@ export interface ActivityCard {
   title: string;
   date: string;
   content: string;
-  image?: string;
+  image: string;
+  link?: string;
 }
 
 export interface LeafletCard {
@@ -27,145 +29,179 @@ export interface LeafletCard {
   date: string;
 }
 
+export interface NewsTickerItem {
+  date: string;
+  text: string;
+  href?: string;
+}
+
+export interface PickUpMovie {
+  id: string;
+  title: string;
+  thumbnail: string;
+  href: string;
+  date?: string;
+}
+
+export interface ActivityPillar {
+  id: string;
+  label: string;
+  caption: string;
+  image: string;
+}
+
 export const HERO_CONTENT = {
   slogan: '生活者の立場から、社会の矛盾を。',
+  sloganAccent: '社会の矛盾を。',
   name: '橿原市議会議員 今井りか',
-  subtitle: 'こども・地域・対話を大切にした市政活動',
+  party: '立憲民主党',
 } as const;
 
+/** ヒーロー右側・FV — IMAGE_CLASSIFICATION */
+export const HERO_IMAGE = '/images/hero_portrait-gray-bg-main.jpg';
+
+export const NEWS_TICKER_ITEMS: NewsTickerItem[] = [
+  {
+    date: '2026.03.20',
+    text: 'いまいだより 2026年冬号を公開しました',
+    href: '/newsletter',
+  },
+  {
+    date: '2026.03.10',
+    text: '活動報告を更新しました',
+    href: '/policy',
+  },
+  {
+    date: '2026.03.01',
+    text: '議会での取り上げ内容をまとめました',
+    href: '/assembly',
+  },
+];
+
+/** 政策TOPICS — セクション12.3（3枚） */
 export const POLICY_CARDS: PolicyCard[] = [
   {
     id: 'children',
     title: '子どもたちのこと、一緒に考えませんか',
-    description: '子どもたちが安心して暮らし、学べる環境づくりを目指しています。教育、子育て支援、学校給食など、子どもに関わる施策を優先に取り組みます。',
-    image: '/images/policy/children.jpg',
+    sub: '子育て中のお母さんの目線で',
+    description:
+      '2人の男の子を育てながら、幼稚園や学校の現場で感じることを、議会に届けています。',
+    image: '/images/community_kids-voting-event.jpg',
     link: '/policy#children',
   },
   {
     id: 'community',
     title: 'このまちで暮らし続けたい、と思えるように',
-    description: '地域経済の活性化、住環境の整備、防災対策など、市民の皆さんが安心して暮らせるまちづくりに取り組んでいます。',
-    image: '/images/policy/community.jpg',
+    sub: '暮らしの「もうちょっと」を良くする',
+    description:
+      '橿原の商店街や子育ての声を聞き、まちの「もうちょっと」を一緒に考えたいです。',
+    image: '/images/community_kindergarten-sakura.jpg',
     link: '/policy#community',
   },
   {
     id: 'dialogue',
     title: '気軽に声をかけてください',
-    description: '市民の皆さんの声が政策に反映される仕組みを大切にしています。座談会やSNSを通じて、皆さんの想いをお聞かせください。',
-    image: '/images/policy/dialogue.jpg',
+    sub: 'あなたの「ちょっと聞いて」が力になります',
+    description:
+      '座談会やSNS、道で会ったときも。ちいさな声ほど、大切にしたいんです。',
+    image: '/images/dialogue_mama-meeting-main.jpg',
     link: '/policy#dialogue',
   },
-  {
-    id: 'wellbeing',
-    title: '誰もが生きやすい社会へ',
-    description: '福祉、健康、環境など、市民生活に関わる様々な課題に向き合い、改善を目指します。',
-    image: '/images/policy/wellbeing.jpg',
-    link: '/policy#wellbeing',
-  },
 ];
 
+/** 活動報告 — セクション12トーン */
 export const RECENT_ACTIVITIES: ActivityCard[] = [
   {
-    id: 'assembly-2024-03',
-    title: '3月議会での質問',
-    date: '2024.03.15',
-    content: '子どもの医療費助成制度について質問を行いました。市民の皆さんからいただいた声を市政に届けることを大切にしています。',
-    image: '/images/activity/assembly.jpg',
+    id: 'a1',
+    title: '議会で、子どもたちの環境について',
+    date: '2026.03.15',
+    content:
+      '幼稚園や小学校の過ごしやすさ。現場の声をもとに、予算のことも含めて取り上げました。',
+    image: '/images/council_speaking-podium.jpg',
+    link: '/assembly',
   },
   {
-    id: 'roundtable-2024-03',
-    title: '地域座談会を開催',
-    date: '2024.03.10',
-    content: '市内3箇所で座談会を開催。防災対策や学校教育についてご意見をいただきました。ありがとうございました。',
-    image: '/images/activity/roundtable.jpg',
+    id: 'a2',
+    title: '地域のイベントで',
+    date: '2026.03.08',
+    content:
+      '子どもたちと話す時間が、いちばんのヒントになります。また報告しますね。',
+    image: '/images/community_kids-voting-event.jpg',
+    link: '/policy',
   },
   {
-    id: 'community-event-2024-03',
-    title: '子ども向けワークショップ',
-    date: '2024.03.05',
-    content: '市内の子ども食堂でボランティア。子どもたちとの時間を大切にしています。',
-    image: '/images/activity/workshop.jpg',
-  },
-  {
-    id: 'sns-campaign-2024-02',
-    title: 'SNS発信キャンペーン',
-    date: '2024.02.28',
-    content: '市民の皆さんからいただいた「まちへの想い」をInstagramで紹介しています。ぜひフォローしてください。',
+    id: 'a3',
+    title: 'ママ座談会のあと',
+    date: '2026.02.28',
+    content:
+      'お茶を飲みながら聞いた「ちょっと困ってる」を、持ち帰って考えています。',
+    image: '/images/dialogue_mama-meeting-main.jpg',
+    link: '/contact',
   },
 ];
 
+/** Pick Up Movie — 議会動画（サムネはIMAGE_CLASSIFICATION準拠、リンクは議会動画ページへ） */
+export const PICK_UP_MOVIES: PickUpMovie[] = [
+  {
+    id: 'm1',
+    title: '議会での一般質問（ダイジェスト）',
+    thumbnail: '/images/council_speaking-podium.jpg',
+    href: '/assembly',
+    date: '2026.02.10',
+  },
+  {
+    id: 'm2',
+    title: '活動の様子（街頭・地域）',
+    thumbnail: '/images/hero_slogan-board-green.jpg',
+    href: '/assembly',
+    date: '2026.01.20',
+  },
+];
+
+/** 活動セクション 丸アイコン — セクション12.3 */
+export const ACTIVITY_PILLARS: ActivityPillar[] = [
+  {
+    id: 'council',
+    label: '議会活動',
+    caption: 'みなさんの声を届けています',
+    image: '/images/council_speaking-podium.jpg',
+  },
+  {
+    id: 'area',
+    label: '地域活動',
+    caption: 'まちの中で汗をかいています',
+    image: '/images/community_kids-voting-event.jpg',
+  },
+  {
+    id: 'talk',
+    label: '座談会',
+    caption: 'お茶を飲みながら、お話ししませんか',
+    image: '/images/dialogue_mama-meeting-main.jpg',
+  },
+  {
+    id: 'sns',
+    label: 'SNS発信',
+    caption: '日々のことを発信しています',
+    image: '/images/hero_slogan-board-green.jpg',
+  },
+];
+
+/** いまいだより一覧（抜粋 — 詳細は /newsletter で拡張可） */
 export const LEAFLETS: LeafletCard[] = [
   {
-    id: 'leaflet-2024-spring',
-    title: '2024年春 活動報告書',
-    description: '3月議会での質問内容と市民からのご意見をまとめた活動報告書です。',
-    pdfLink: '/pdf/leaflet-2024-spring.pdf',
-    image: '/images/newsletter/leaflet-2024-spring.jpg',
-    date: '2024.03.20',
+    id: 'vol18',
+    title: 'いまいだより 2026年冬号',
+    description: '市政のことを、やわらかくお届けしています。',
+    pdfLink: '/pdf/vol18_2026fuyu.pdf',
+    image: '/images/placeholder.jpg',
+    date: '2026.01.15',
   },
   {
-    id: 'leaflet-2024-winter',
-    title: '2024年冬 活動報告書',
-    description: '1月・2月の議会活動と地域での活動をまとめました。',
-    pdfLink: '/pdf/leaflet-2024-winter.pdf',
-    image: '/images/newsletter/leaflet-2024-winter.jpg',
-    date: '2024.02.01',
-  },
-  {
-    id: 'leaflet-2023-autumn',
-    title: '2023年秋 活動報告書',
-    description: '9月・10月の議会活動をまとめた報告書です。',
-    pdfLink: '/pdf/leaflet-2023-autumn.pdf',
-    image: '/images/newsletter/leaflet-2023-autumn.jpg',
-    date: '2023.10.15',
-  },
-  {
-    id: 'leaflet-2023-summer',
-    title: '2023年夏 活動報告書',
-    description: '7月・8月の地域活動をまとめました。',
-    pdfLink: '/pdf/leaflet-2023-summer.pdf',
-    image: '/images/newsletter/leaflet-2023-summer.jpg',
-    date: '2023.08.30',
+    id: 'vol17',
+    title: 'いまいだより 2025年秋号',
+    description: '地域の声と活動の記録です。',
+    pdfLink: '/pdf/vol17_2025aki.pdf',
+    image: '/images/placeholder.jpg',
+    date: '2025.10.01',
   },
 ];
-
-export const PROFILE_DATA = {
-  name: '今井りか',
-  position: '奈良県橿原市議会議員',
-  bio: '橿原市在住。シングルマザーとして2人の子どもを育てながら、地域のために活動してきました。生活者の立場から、市民の皆さんの声を市政に届けることを大切にしています。',
-  interests: [
-    '子どもの貧困対策',
-    '子育て支援の充実',
-    '教育環境の改善',
-    '地域経済の活性化',
-    '防災対策',
-  ],
-} as const;
-
-export const FOOTER_LINKS = [
-  {
-    category: 'サイト',
-    links: [
-      { label: 'ホーム', href: '/' },
-      { label: 'プロフィール', href: '/profile' },
-      { label: '政策', href: '/policy' },
-      { label: 'ニュースレター', href: '/newsletter' },
-    ],
-  },
-  {
-    category: '活動',
-    links: [
-      { label: '議会活動', href: '/assembly' },
-      { label: 'インタビュー', href: '/interview' },
-      { label: 'お問い合わせ', href: '/contact' },
-    ],
-  },
-  {
-    category: 'サポート',
-    links: [
-      { label: 'ご支援ください', href: '/support' },
-      { label: 'プライバシーポリシー', href: '#privacy' },
-      { label: '利用規約', href: '#terms' },
-    ],
-  },
-] as const;

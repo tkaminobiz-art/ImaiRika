@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { SITE_METADATA } from '@/lib/constants';
 import Sidebar from '@/components/Sidebar';
+import TopBar from '@/components/TopBar';
 import Footer from '@/components/Footer';
 import FloatingButton from '@/components/FloatingButton';
 import './globals.css';
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     url: SITE_METADATA.url,
     title: SITE_METADATA.title,
     description: SITE_METADATA.description,
+    images: [{ url: '/images/ogp_portrait-soft-smile.jpg' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -42,19 +44,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <meta name="description" content={SITE_METADATA.description} />
         <meta name="theme-color" content="#004098" />
       </head>
-      <body className="bg-white">
-        {/* Sidebar */}
+      <body className="bg-white antialiased">
         <Sidebar />
 
-        {/* Main content */}
-        <main className="min-h-screen">
+        <div className="min-h-screen md:ml-[100px]">
+          <TopBar />
           {children}
-        </main>
+          <Footer />
+        </div>
 
-        {/* Footer */}
-        <Footer />
-
-        {/* Floating support button */}
         <FloatingButton />
       </body>
     </html>

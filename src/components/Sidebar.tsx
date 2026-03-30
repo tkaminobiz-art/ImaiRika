@@ -1,53 +1,76 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import MenuOverlay from './MenuOverlay';
 
 export default function Sidebar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
     <>
-      {/* Sidebar - visible on desktop only */}
-      <aside className="hidden md:fixed md:left-0 md:top-0 md:w-[100px] md:h-screen md:bg-cdp-blue md:flex md:flex-col md:items-center md:justify-between md:py-6 md:z-40">
-        {/* Logo / Brand */}
-        <div className="flex items-center justify-center">
-          <a href="/" className="text-white text-2xl font-bold">
-            IR
-          </a>
+      {/* 左固定サイドバー（デスクトップ） */}
+      <aside className="fixed left-0 top-0 z-[100] hidden h-screen w-[100px] flex-col items-center bg-cdp-blue md:flex">
+        <div className="flex flex-1 flex-col items-center pt-5">
+          <Link
+            href="/"
+            className="group flex flex-col items-center gap-2 px-2 text-center"
+            aria-label="トップへ"
+          >
+            <div className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-white/30">
+              <Image
+                src="/images/profile_portrait-white-bg-smile.jpg"
+                alt=""
+                fill
+                className="object-cover"
+                sizes="56px"
+              />
+            </div>
+            <span className="text-[10px] font-bold leading-tight text-white">
+              今井りか
+            </span>
+          </Link>
         </div>
 
-        {/* Menu Button */}
-        <button
-          onClick={handleMenuToggle}
-          className="flex items-center justify-center rounded-full bg-cdp-yellow text-cdp-blue p-3 hover:opacity-90 transition-opacity"
-          aria-label="メニューを開く"
-        >
-          <Menu size={24} />
-        </button>
+        <div className="flex flex-[0.6] flex-col items-center justify-center pb-8">
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen(true)}
+            className="flex flex-col items-center gap-2 text-white"
+            aria-expanded={isMenuOpen}
+            aria-controls="site-menu-overlay"
+            aria-label="メニューを開く"
+          >
+            <span className="flex h-[2px] w-7 bg-white" />
+            <span className="flex h-[2px] w-7 bg-white" />
+            <span className="flex h-[2px] w-7 bg-white" />
+            <span className="mt-1 text-[11px] font-bold tracking-widest">MENU</span>
+          </button>
+        </div>
       </aside>
 
-      {/* Mobile menu button - visible on mobile only */}
-      <div className="md:hidden fixed top-4 left-4 z-50">
+      {/* モバイル：左上ハンバーガー */}
+      <div className="fixed left-3 top-3 z-[100] md:hidden">
         <button
-          onClick={handleMenuToggle}
-          className="flex items-center justify-center rounded-full bg-cdp-blue text-white p-3 hover:opacity-90 transition-opacity shadow-lg"
+          type="button"
+          onClick={() => setIsMenuOpen(true)}
+          className="flex flex-col items-center gap-1.5 rounded-sm bg-cdp-blue px-3 py-2.5 text-white shadow-md"
+          aria-expanded={isMenuOpen}
+          aria-controls="site-menu-overlay"
           aria-label="メニューを開く"
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          <span className="flex h-[2px] w-6 bg-white" />
+          <span className="flex h-[2px] w-6 bg-white" />
+          <span className="flex h-[2px] w-6 bg-white" />
         </button>
       </div>
 
-      {/* Mobile header spacing */}
-      <div className="md:hidden h-16"></div>
-
-      {/* Menu Overlay */}
-      <MenuOverlay isOpen={isMenuOpen} onClose={handleMenuToggle} />
+      <MenuOverlay
+        id="site-menu-overlay"
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+      />
     </>
   );
 }
