@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { SITE_METADATA } from '@/lib/constants';
 import Sidebar from '@/components/Sidebar';
 import TopBar from '@/components/TopBar';
@@ -7,7 +7,14 @@ import Footer from '@/components/Footer';
 import FloatingButton from '@/components/FloatingButton';
 import './globals.css';
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#004098',
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_METADATA.url),
   title: {
     default: SITE_METADATA.title,
     template: '%s | ' + SITE_METADATA.title,
@@ -35,15 +42,6 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ja">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0"
-        />
-        <meta name="description" content={SITE_METADATA.description} />
-        <meta name="theme-color" content="#004098" />
-      </head>
       <body className="bg-white antialiased">
         <Sidebar />
 
