@@ -1,16 +1,22 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
+import { Noto_Sans_JP } from 'next/font/google';
 import { SITE_METADATA } from '@/lib/constants';
-import Sidebar from '@/components/Sidebar';
-import TopBar from '@/components/TopBar';
-import Footer from '@/components/Footer';
-import FloatingButton from '@/components/FloatingButton';
+import SiteHeader from '@/components/site/SiteHeader';
+import SiteFooter from '@/components/site/SiteFooter';
 import './globals.css';
+
+const noto = Noto_Sans_JP({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '900'],
+  variable: '--font-noto',
+  display: 'swap',
+});
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#004098',
+  themeColor: '#E74291',
 };
 
 export const metadata: Metadata = {
@@ -35,23 +41,21 @@ export const metadata: Metadata = {
   },
 };
 
-interface RootLayoutProps {
-  children: React.ReactNode;
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja">
-      <body className="bg-white antialiased">
-        <Sidebar />
-
-        <div className="min-h-screen md:ml-[100px]">
-          <TopBar />
-          {children}
-          <Footer />
-        </div>
-
-        <FloatingButton />
+    <html lang="ja" className={noto.variable}>
+      <body
+        className={`${noto.className} min-h-screen bg-white text-text-body antialiased`}
+      >
+        <a
+          href="#content"
+          className="skip-link"
+        >
+          コンテンツにスキップ
+        </a>
+        <SiteHeader />
+        <main id="content">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );

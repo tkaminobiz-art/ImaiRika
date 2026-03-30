@@ -1,5 +1,5 @@
 /**
- * Site-wide constants — PROJECT_SPEC + セクション12
+ * サイト定数 — 塩村サイト風 UI + 立憲ブルー（CLAUDE.md）
  */
 
 export const SITE = {
@@ -10,38 +10,35 @@ export const SITE = {
   position: '橿原市議会議員',
 } as const;
 
-export const SITE_COLORS = {
-  primary: '#004098',
-  yellow: '#FFE72F',
-  red: '#FF3E4D',
-  purple: '#6321E0',
-  cyan: '#009FAD',
-  orange: '#FF7F00',
-  textDark: '#151B1E',
-  textBody: '#2F2F2F',
-  grayBg: '#F0F0F0',
-  linkBlue: '#1E88E5',
+/** 塩村サイト実測に近い値 + CLAUDE.md の #2B7AC6 / #004098 */
+export const COLORS = {
+  /** 見出しピンク（h2 相当） */
+  headingPink: '#E74291',
+  /** ボタン・アクセントピンク */
+  accentPink: '#E6536A',
+  /** メインCTAブルー（お問い合わせ等） */
+  mainBlue: '#2B7AC6',
+  /** 立憲ブルー */
+  ritsyoBlue: '#004098',
+  text: '#333333',
+  textMuted: '#555555',
+  bg: '#FFFFFF',
+  sectionGray: '#F7F8FA',
+  sectionBlueTint: '#F0F5FA',
 } as const;
 
 export const SNS_LINKS = {
-  twitter: {
-    url: 'https://twitter.com/imirk411',
-    label: 'X (Twitter)',
-    handle: '@imirk411',
-  },
+  x: { url: 'https://twitter.com/imirk411', label: 'X', handle: '@imirk411' },
   instagram: {
     url: 'https://www.instagram.com/imai_rika_0411/',
     label: 'Instagram',
     handle: '@imai_rika_0411',
   },
-  youtube: {
-    url: 'https://www.youtube.com/@user-jd2gw4qx2c',
-    label: 'YouTube',
-  },
+  youtube: { url: 'https://www.youtube.com/@user-jd2gw4qx2c', label: 'YouTube' },
 } as const;
 
-export const CONTACT_INFO = {
-  phone: '080-8305-4364',
+export const CONTACT = {
+  tel: '080-8305-4364',
   email: 'rika.imai0411@gmail.com',
 } as const;
 
@@ -56,111 +53,9 @@ export const SITE_METADATA = {
   locale: 'ja_JP',
 } as const;
 
-/** 上部バー「応援する」まわり（セクション2.1） */
-export const TOPBAR_LINKS = [
-  { label: '後援会', href: '/support' },
-  { label: 'カンパ', href: '/support' },
-  { label: 'ボランティア', href: '/contact' },
-  { label: 'お問い合わせ', href: '/contact' },
-] as const;
-
-/** 4色バナー — セクション12.3 */
-export const COLOR_BANNERS = [
-  {
-    id: 'profile',
-    main: '今井りかについて',
-    sub: 'どんな人？と思った方へ',
-    titleEn: 'Profile',
-    bg: 'bg-cdp-red',
-    href: '/profile',
-  },
-  {
-    id: 'policy',
-    main: '3つの政策の柱',
-    sub: 'こども・地域・対話',
-    titleEn: 'Policy',
-    bg: 'bg-cdp-purple',
-    href: '/policy',
-  },
-  {
-    id: 'newsletter',
-    main: 'いまいだより',
-    sub: '市政のこと、わかりやすくお届け',
-    titleEn: 'Newsletter',
-    bg: 'bg-cdp-cyan',
-    href: '/newsletter',
-  },
-  {
-    id: 'support',
-    main: '応援してくださる方へ',
-    sub: 'あたたかいお気持ちが力になります',
-    titleEn: 'Support',
-    bg: 'bg-cdp-orange',
-    href: '/support',
-  },
-] as const;
-
-export const FOOTER_LINKS = [
-  {
-    category: '今井りかについて',
-    links: [
-      { label: 'プロフィール', href: '/profile' },
-      { label: 'インタビュー', href: '/interview' },
-    ],
-  },
-  {
-    category: '政策・活動',
-    links: [
-      { label: '3つの政策の柱', href: '/policy' },
-      { label: 'いまいだより', href: '/newsletter' },
-      { label: '議会動画', href: '/assembly' },
-    ],
-  },
-  {
-    category: 'つながる',
-    links: [
-      { label: 'ご支援', href: '/support' },
-      { label: 'お問い合わせ', href: '/contact' },
-    ],
-  },
-] as const;
-
-/** MENUオーバーレイ — PROJECT_SPEC 2.3 */
-export const MENU_SECTIONS = [
-  {
-    title: '今井りかについて',
-    links: [
-      { label: 'プロフィール', href: '/profile' },
-      { label: '経歴', href: '/profile' },
-      { label: '議会での活動', href: '/assembly' },
-    ],
-  },
-  {
-    title: '政策',
-    links: [
-      { label: 'こども・子育て', href: '/policy#children' },
-      { label: '地域', href: '/policy#community' },
-      { label: '対話と発信', href: '/policy#dialogue' },
-    ],
-  },
-  {
-    title: 'いまいだより',
-    links: [{ label: 'バックナンバー一覧', href: '/newsletter' }],
-  },
-  {
-    title: '議会動画',
-    links: [{ label: '一覧・埋め込み', href: '/assembly' }],
-  },
-  {
-    title: 'ご支援',
-    links: [{ label: 'カンパのお申込み', href: '/support' }],
-  },
-  {
-    title: 'お問い合わせ',
-    links: [
-      { label: 'TEL', href: `tel:${CONTACT_INFO.phone.replace(/-/g, '')}` },
-      { label: 'メール', href: `mailto:${CONTACT_INFO.email}` },
-      { label: 'SNS', href: '/contact' },
-    ],
-  },
+export const NAV_ITEMS = [
+  { href: '/news', label: '活動報告' },
+  { href: '/policy', label: '政策' },
+  { href: '/profile', label: 'プロフィール' },
+  { href: '/newsletter', label: 'いまいだより' },
 ] as const;
