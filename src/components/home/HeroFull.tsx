@@ -1,27 +1,36 @@
+import Image from 'next/image';
+
 /**
  * FV — CLAUDE.md: 完成済み画像をそのまま表示（テキストオーバーレイなし）
- * PC: fv_pc.jpg（JPEG） / モバイル: fv_mobile.jpg
- * ※拡張子と実体が一致すること（.png に JPEG を入れると表示されない／黒塗りになる）
+ * PC: fv_pc.jpg / モバイル: fv_mobile.jpg
+ * `<picture>` より表示が安定するよう、ブレークポイントで別コンポーネントに分離
  */
 export default function HeroFull() {
   return (
     <section className="m-0 w-full overflow-hidden p-0" aria-label="ファーストビュー">
-      <picture className="block w-full leading-none">
-        <source media="(max-width: 768px)" srcSet="/images/fv_mobile.jpg" />
-        <source media="(min-width: 769px)" srcSet="/images/fv_pc.jpg" />
-        {/* デザイン済み画像に文言・写真・和柄が含まれるため img のみ */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+      {/* モバイル（〜768px） */}
+      <div className="relative w-full md:hidden">
+        <Image
+          src="/images/fv_mobile.jpg"
+          alt="今井りか 橿原市議会議員"
+          width={750}
+          height={1334}
+          className="block h-auto w-full"
+          sizes="100vw"
+          priority
+        />
+      </div>
+      {/* デスクトップ（769px〜） */}
+      <div className="relative hidden h-[80vh] max-h-[80vh] w-full md:block">
+        <Image
           src="/images/fv_pc.jpg"
           alt="今井りか 橿原市議会議員"
-          width={1920}
-          height={1080}
-          className="block h-auto w-full md:h-[80vh] md:object-cover md:object-center"
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+          priority
         />
-      </picture>
+      </div>
     </section>
   );
 }

@@ -32,12 +32,20 @@ export const metadata: Metadata = {
     url: SITE_METADATA.url,
     title: SITE_METADATA.title,
     description: SITE_METADATA.description,
-    images: [{ url: '/images/ogp_portrait-soft-smile.jpg' }],
+    images: [
+      {
+        url: '/images/fv_pc.jpg',
+        width: 1920,
+        height: 1080,
+        alt: SITE_METADATA.title,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: SITE_METADATA.title,
     description: SITE_METADATA.description,
+    images: ['/images/fv_pc.jpg'],
   },
 };
 
