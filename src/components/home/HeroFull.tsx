@@ -10,7 +10,7 @@ export default function HeroFull() {
     <section
       aria-label="ファーストビュー"
       role="img"
-      className="relative z-10 w-full overflow-hidden bg-white bg-cover bg-center bg-no-repeat max-md:aspect-[750/1334] max-md:bg-[url('/images/fv_mobile.jpg')] md:min-h-[80vh] md:bg-[url('/images/fv_pc.jpg')]"
+      className="relative z-10 w-full overflow-hidden bg-cover bg-center bg-no-repeat max-md:aspect-[750/1334] max-md:bg-[url('/images/fv_mobile.jpg')] md:min-h-[80vh] md:bg-[url('/images/fv_pc.jpg')]"
     />
   );
 }
