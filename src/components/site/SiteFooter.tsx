@@ -4,9 +4,10 @@ import { SITE } from '@/lib/constants';
 export default function SiteFooter() {
   const y = new Date().getFullYear();
   return (
-    <footer className="border-t border-black/10 bg-white py-10 text-center text-sm text-text-body/80">
-      <p>
-        © {y} {SITE.position} {SITE.name}
+    <footer className="bg-v2-blue px-6 py-7 text-center font-sans text-[11px] font-normal tracking-[0.06em] text-white/70">
+      <p>&copy; {y} 今井りか事務所</p>
+      <p className="mt-1 text-white/50">
+        {SITE.position} {SITE.name}
       </p>
     </footer>
   );

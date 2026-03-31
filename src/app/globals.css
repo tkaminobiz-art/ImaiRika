@@ -2,26 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+/* DESIGN SYSTEM v2 — tokens (HTMLプロトタイプ準拠) */
+:root {
+  --pink: #d64672;
+  --pink-deep: #b33a5e;
+  --pink-soft: #f2e0e6;
+  --pink-bg: #fdf5f7;
+
+  --blue: #004098;
+  --blue-deep: #002d6b;
+  --blue-soft: #d6e4f5;
+  --blue-bg: #f0f4fa;
+
+  --text: #1a1a1a;
+  --text-sub: #555555;
+  --text-muted: #8e8e8e;
+
+  --bg: #ffffff;
+  --bg-warm: #faf8f5;
+  --bg-cool: #f5f6f8;
+  --border: #e8e4df;
+
+  --header-h: 88px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --header-h: 80px;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+    font-feature-settings: 'palt' 1;
+    overflow-x: hidden;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+/* ノイズ — ヘッダー(z-100)より下で全面に薄く（クリックは透過） */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 30;
+  opacity: 0.018;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .skip-link {
   position: absolute;
   left: -10000px;
   top: auto;
-  z-index: 100;
+  z-index: 200;
 }
 .skip-link:focus {
   left: 1rem;
   top: 1rem;
   position: fixed;
   padding: 0.5rem 1rem;
-  background: #e6536a;
+  background: var(--pink);
   color: #fff;
   border-radius: 0.25rem;
-  outline: 2px solid #2b7ac6;
+  outline: 2px solid var(--blue);
   outline-offset: 2px;
+  z-index: 200;
 }
 
 @layer utilities {
@@ -36,7 +98,7 @@ html {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid #2b7ac6;
+  outline: 2px solid var(--blue);
   outline-offset: 2px;
 }
 

@@ -1,9 +1,10 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
-import { Noto_Sans_JP } from 'next/font/google';
+import { Montserrat, Noto_Sans_JP, Noto_Serif_JP } from 'next/font/google';
 import { SITE_METADATA } from '@/lib/constants';
 import SiteHeader from '@/components/site/SiteHeader';
 import SiteFooter from '@/components/site/SiteFooter';
+import 'yakuhanjp/dist/css/yakuhanjp.css';
 import './globals.css';
 
 const noto = Noto_Sans_JP({
@@ -13,10 +14,24 @@ const noto = Noto_Sans_JP({
   display: 'swap',
 });
 
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-en',
+  display: 'swap',
+});
+
+const notoSerif = Noto_Serif_JP({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-serif',
+  display: 'swap',
+});
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#E74291',
+  themeColor: '#004098',
 };
 
 export const metadata: Metadata = {
@@ -51,18 +66,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja" className={noto.variable}>
-      <body
-        className={`${noto.className} min-h-screen bg-white text-text-body antialiased`}
-      >
-        <a
-          href="#content"
-          className="skip-link"
-        >
+    <html
+      lang="ja"
+      className={`${noto.variable} ${montserrat.variable} ${notoSerif.variable}`}
+    >
+      <body className={`${noto.className} min-h-screen bg-white antialiased`}>
+        <a href="#content" className="skip-link">
           コンテンツにスキップ
         </a>
         <SiteHeader />
-        <main id="content">{children}</main>
+        <main id="content" className="pt-[var(--header-h)]">
+          {children}
+        </main>
         <SiteFooter />
       </body>
     </html>
