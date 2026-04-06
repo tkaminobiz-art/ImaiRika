@@ -70,6 +70,7 @@ function PillarItem({
             fill
             className="object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.015]"
             sizes="(max-width: 768px) 100vw, 46vw"
+            style={{ objectPosition: pillar.imagePosition ?? 'center' }}
           />
         </div>
       </div>

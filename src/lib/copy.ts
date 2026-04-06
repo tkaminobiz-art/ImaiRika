@@ -32,6 +32,7 @@ export const POLICY_PILLARS = [
     title: 'こども・子育て',
     short: '子どもたちのこと、一緒に考えませんか',
     image: '/images/community_kids-voting-event.jpg',
+    imagePosition: 'center',
     lead: [
       '2人の男の子を育てています。',
       '毎日お弁当をつくって、送り出して、仕事をして。',
@@ -59,6 +60,7 @@ export const POLICY_PILLARS = [
     title: '地域',
     short: 'このまちで暮らし続けたい、と思えるように',
     image: '/images/community_kindergarten-sakura.jpg',
+    imagePosition: 'left 30%',
     lead: [
       '橿原って、いいまちなんです。',
       '歴史があって、人があたたかくて。',
@@ -86,6 +88,7 @@ export const POLICY_PILLARS = [
     title: '対話と発信',
     short: '気軽に声をかけてください',
     image: '/images/dialogue_mama-meeting-main.jpg',
+    imagePosition: 'center',
     lead: [
       '政治って、なんだか遠い感じがしますよね。私もそう思っていました。',
       'でも実は、毎日の暮らしと地続きなんです。',
