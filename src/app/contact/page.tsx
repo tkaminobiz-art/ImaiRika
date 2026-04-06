@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { SNS_LINKS, CONTACT } from '@/lib/constants';
 
@@ -17,6 +18,16 @@ export default function ContactPage() {
           <span className="mx-2">&gt;</span>
           <span>お問い合わせ</span>
         </nav>
+        <div className="relative mb-8 h-48 overflow-hidden rounded-xl md:h-56">
+          <Image
+            src="/images/dialogue_group-board-photo.jpg"
+            alt="集合写真"
+            fill
+            className="object-cover"
+            priority
+            sizes="(max-width: 768px) 100vw, 1140px"
+          />
+        </div>
         <h1 className="mb-8 text-3xl font-bold text-shio-heading md:text-4xl">
           なんでも気軽にどうぞ
         </h1>

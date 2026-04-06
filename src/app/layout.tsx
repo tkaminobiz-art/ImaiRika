@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     description: SITE_METADATA.description,
     images: [
       {
-        url: '/images/fv_pc.jpg',
-        width: 1920,
-        height: 1080,
+        url: '/images/ogp_portrait-soft-smile.jpg',
+        width: 1200,
+        height: 630,
         alt: SITE_METADATA.title,
       },
     ],
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: SITE_METADATA.title,
     description: SITE_METADATA.description,
-    images: ['/images/fv_pc.jpg'],
+    images: ['/images/ogp_portrait-soft-smile.jpg'],
   },
 };
 

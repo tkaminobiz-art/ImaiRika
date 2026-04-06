@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { SNS_LINKS } from '@/lib/constants';
 
@@ -17,9 +18,20 @@ export default function AssemblyPage() {
           <span className="mx-2">&gt;</span>
           <span>議会動画</span>
         </nav>
-        <h1 className="mb-6 text-3xl font-bold text-shio-heading md:text-4xl">議会動画</h1>
+        <div className="relative mb-8 h-48 overflow-hidden rounded-xl md:h-64">
+          <Image
+            src="/images/council_speaking-podium.jpg"
+            alt="議会で質問する今井りか"
+            fill
+            className="object-cover"
+            priority
+            sizes="(max-width: 768px) 100vw, 1140px"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+          <h1 className="absolute bottom-6 left-6 text-3xl font-bold text-white md:text-4xl">議会動画</h1>
+        </div>
         <p className="mb-12 max-w-2xl leading-relaxed text-text-body">
-          議会での様子を、動画でも見られるようにしています。
+          議会での様子を、動画でもご覧いただけます。
           チャンネル全体は{' '}
           <a
             href={SNS_LINKS.youtube.url}

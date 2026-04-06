@@ -1,13 +1,14 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useReveal, revealClass } from '@/hooks/useReveal';
 
 const vols = [
-  { vol: '第18号', sub: '最新号', color: 'bg-[var(--pink-soft)]' },
-  { vol: '第17号', sub: '特別号', color: 'bg-[var(--blue-soft)]' },
-  { vol: '第16号', sub: '', color: 'bg-v2-cool' },
-  { vol: '第15号', sub: '', color: 'bg-[var(--bg-warm)]' },
+  { vol: '第18号', sub: '最新号', image: '/images/hero_slogan-board-green.jpg' },
+  { vol: '第17号', sub: '特別号', image: '/images/community_facility-visit-nara.jpg' },
+  { vol: '第16号', sub: '', image: '/images/community_shaved-ice-serving.jpg' },
+  { vol: '第15号', sub: '', image: '/images/humanrights_event-closeup.jpg' },
 ];
 
 export default function NewsletterSection() {
@@ -28,10 +29,14 @@ export default function NewsletterSection() {
               key={v.vol}
               className={`cursor-pointer overflow-hidden rounded-[var(--r-md)] bg-v2-cool shadow-[var(--shadow-rest)] transition duration-[400ms] ease-[var(--spring)] hover:-translate-y-[3px] hover:scale-[1.01] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] ${revealClass(visible, i * 80)}`}
             >
-              <div
-                className={`flex aspect-[3/4] w-full items-center justify-center text-xs text-[var(--text-muted)] ${v.color}`}
-              >
-                {v.vol} サムネイル
+              <div className="relative aspect-[3/4] w-full overflow-hidden">
+                <Image
+                  src={v.image}
+                  alt={`${v.vol} サムネイル`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                />
               </div>
               <div className="px-3.5 py-3">
                 <span className="text-[11px] font-bold tracking-[0.04em] text-v2-pink">

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useReveal, revealClass } from '@/hooks/useReveal';
 import { SNS_LINKS } from '@/lib/constants';
 
@@ -16,7 +17,16 @@ export default function SnsSection() {
           SNSで日々の活動を発信しています
         </h2>
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="flex min-h-[360px] flex-col items-center justify-center gap-4 rounded-[var(--r-md)] bg-v2-cool">
+          <div className="flex min-h-[360px] flex-col items-center justify-center gap-5 rounded-[var(--r-md)] bg-v2-cool">
+            <div className="relative h-16 w-16 overflow-hidden rounded-full shadow">
+              <Image
+                src="/images/profile_portrait-white-bg-smile.jpg"
+                alt=""
+                fill
+                className="object-cover"
+                sizes="64px"
+              />
+            </div>
             <span className="text-sm text-[var(--text-muted)]">
               X ({SNS_LINKS.x.handle})
             </span>
@@ -29,7 +39,16 @@ export default function SnsSection() {
               フォローする
             </a>
           </div>
-          <div className="flex min-h-[360px] flex-col items-center justify-center gap-4 rounded-[var(--r-md)] bg-v2-cool">
+          <div className="flex min-h-[360px] flex-col items-center justify-center gap-5 rounded-[var(--r-md)] bg-v2-cool">
+            <div className="relative h-16 w-16 overflow-hidden rounded-full shadow">
+              <Image
+                src="/images/profile_portrait-white-bg-smile.jpg"
+                alt=""
+                fill
+                className="object-cover"
+                sizes="64px"
+              />
+            </div>
             <span className="text-sm text-[var(--text-muted)]">
               Instagram ({SNS_LINKS.instagram.handle})
             </span>

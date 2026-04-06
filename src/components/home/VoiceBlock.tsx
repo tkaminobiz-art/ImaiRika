@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useReveal, revealClass } from '@/hooks/useReveal';
 
 export default function VoiceBlock() {
@@ -10,7 +11,7 @@ export default function VoiceBlock() {
       <div className="mx-auto max-w-v2 px-[var(--gutter)]">
         <div
           ref={ref}
-          className={`relative rounded-[var(--r-lg)] border-l-[3px] border-v2-pink bg-[var(--bg-warm)] px-10 py-10 md:px-14 md:py-12 ${revealClass(visible)}`}
+          className={`relative flex items-center gap-6 rounded-[var(--r-lg)] border-l-[3px] border-v2-pink bg-[var(--bg-warm)] px-8 py-10 md:gap-10 md:px-14 md:py-12 ${revealClass(visible)}`}
         >
           <span
             aria-hidden
@@ -18,15 +19,29 @@ export default function VoiceBlock() {
           >
             &ldquo;
           </span>
-          <p className="relative z-[1] font-serif text-base leading-[2.2] md:text-lg">
-            届いていない声がある——。<br />
-            議会でいつもそう感じていました。お母さんたちの声、地域で暮らすお年寄りの声、<br className="hidden md:inline" />
-            子どもたちのこと。聞こえているのに、届いていない。<br />
-            だから私は、その声を届ける仕事を続けています。
-          </p>
-          <p className="relative z-[1] mt-4 text-xs tracking-[0.04em] text-[var(--text-muted)]">
-            —— 今井りか
-          </p>
+          <div className="relative z-[1] flex-1">
+            <p className="font-serif text-base leading-[2.2] md:text-lg">
+              届いていない声がある——。<br />
+              議会でいつもそう感じていました。お母さんたちの声、地域で暮らすお年寄りの声、
+              <br className="hidden md:inline" />
+              子どもたちのこと。聞こえているのに、届いていない。<br />
+              だから私は、その声を届ける仕事を続けています。
+            </p>
+            <p className="mt-4 text-xs tracking-[0.04em] text-[var(--text-muted)]">
+              —— 今井りか
+            </p>
+          </div>
+          <div className="hidden shrink-0 md:block">
+            <div className="relative h-[120px] w-[120px] overflow-hidden rounded-full shadow-md">
+              <Image
+                src="/images/sns_portrait-laughing.jpg"
+                alt=""
+                fill
+                className="object-cover"
+                sizes="120px"
+              />
+            </div>
+          </div>
         </div>
       </div>
       <div className="flex justify-center pb-0 pt-8">

@@ -87,6 +87,27 @@ export default function ProfilePage() {
               </p>
             </section>
 
+            <div className="grid grid-cols-2 gap-4">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
+                <Image
+                  src="/images/profile_with-child-studio.jpg"
+                  alt="息子と"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 50vw, 280px"
+                />
+              </div>
+              <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
+                <Image
+                  src="/images/profile_family-riverside.jpg"
+                  alt="家族と河川敷で"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 50vw, 280px"
+                />
+              </div>
+            </div>
+
             <section>
               <h2 className="mb-4 text-lg font-bold text-shio-heading">
                 これまでの歩み
@@ -118,6 +139,16 @@ export default function ProfilePage() {
                 </p>
               </div>
             </section>
+
+            <div className="relative h-48 overflow-hidden rounded-xl md:h-56">
+              <Image
+                src="/images/council_chamber-seat-14.jpg"
+                alt="議場の席「14番 今井りか」"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 640px"
+              />
+            </div>
 
             <section>
               <h2 className="mb-4 text-lg font-bold text-shio-heading">

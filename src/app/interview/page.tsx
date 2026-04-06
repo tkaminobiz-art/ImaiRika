@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -21,6 +22,17 @@ export default function InterviewPage() {
           今井りかのこと——ちょっと長めの自己紹介
         </h1>
 
+        <div className="relative mb-12 aspect-[16/10] max-w-2xl overflow-hidden rounded-xl shadow-lg">
+          <Image
+            src="/images/hero_portrait-gray-bg-main.jpg"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+            sizes="(max-width: 768px) 100vw, 672px"
+          />
+        </div>
+
         <p className="mb-12 max-w-2xl text-lg leading-relaxed text-text-body">
           なんで議員になったの？ どんな人なの？
           <br />
@@ -40,6 +52,10 @@ export default function InterviewPage() {
             </p>
           </section>
 
+          <div className="relative mb-12 aspect-[16/10] overflow-hidden rounded-xl">
+            <Image src="/images/profile_with-child-studio.jpg" alt="" fill className="object-cover" sizes="672px" />
+          </div>
+
           <section className="mb-12">
             <h2 className="mb-6 text-xl font-bold text-shio-heading">
               「思い切って、手を挙げました」
@@ -52,6 +68,10 @@ export default function InterviewPage() {
             </p>
           </section>
 
+          <div className="relative mb-12 aspect-[16/10] overflow-hidden rounded-xl">
+            <Image src="/images/community_mochi-festival.jpg" alt="" fill className="object-cover" sizes="672px" />
+          </div>
+
           <section className="mb-12">
             <h2 className="mb-6 text-xl font-bold text-shio-heading">
               「声がかたちになった日」
@@ -63,6 +83,10 @@ export default function InterviewPage() {
               暮らしに関わる予算のことも、これからも丁寧に見ていきたいと思っています。
             </p>
           </section>
+
+          <div className="relative mb-12 aspect-[16/10] overflow-hidden rounded-xl">
+            <Image src="/images/campaign_wave-blue-sash-back.jpg" alt="" fill className="object-cover" sizes="672px" />
+          </div>
 
           <section>
             <h2 className="mb-6 text-xl font-bold text-shio-heading">
