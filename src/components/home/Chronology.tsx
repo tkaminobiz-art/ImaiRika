@@ -1,17 +1,8 @@
 'use client';
 
 import { useReveal, revealClass } from '@/hooks/useReveal';
-import Image from 'next/image';
 import { CHRONOLOGY, type ChronoEvent } from '@/lib/chronology';
 import { useEffect, useRef, useState, useCallback, type RefCallback } from 'react';
-
-const yearImages: Record<string, string> = {
-  '2021': '/images/council_first-day-documents.jpg',
-  '2022': '/images/community_kindergarten-sakura.jpg',
-  '2023': '/images/council_committee-meeting.jpg',
-  '2024': '/images/dialogue_mama-meeting-main.jpg',
-  '2025': '/images/campaign_station-green-sash.jpg',
-};
 
 function useCountUp(target: number, duration = 1100): [RefCallback<HTMLElement>, number] {
   const [val, setVal] = useState(0);
@@ -139,17 +130,6 @@ export default function Chronology() {
                   </span>
                 </div>
                 <div className="pl-6 pb-2 md:pl-8">
-                  {yearImages[yr.year] && (
-                    <div className="relative mb-4 h-[100px] w-full overflow-hidden rounded-lg md:h-[140px]">
-                      <Image
-                        src={yearImages[yr.year]}
-                        alt=""
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 70vw, 500px"
-                      />
-                    </div>
-                  )}
                   {yr.events.map((ev, ei) => (
                     <EventItem key={ei} ev={ev} />
                   ))}
