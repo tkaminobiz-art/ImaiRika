@@ -46,7 +46,7 @@ export default function HomeBannerCards() {
           >
             <span
               aria-hidden
-              className="pointer-events-none absolute -inset-2 rotate-[-15deg] break-all font-en text-[20px] font-black leading-snug tracking-wide text-white/[0.08] md:text-[28px]"
+              className="pointer-events-none absolute -inset-2 rotate-[-15deg] break-all font-en text-[11px] font-black leading-tight tracking-[0.15em] text-white/[0.06] md:text-[14px]"
             >
               CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP
             </span>
