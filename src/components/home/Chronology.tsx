@@ -1,180 +1,144 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { useReveal, revealClass } from '@/hooks/useReveal';
 import { CHRONOLOGY, type ChronoEvent } from '@/lib/chronology';
+import { useEffect, useRef, useState, useCallback, type RefCallback } from 'react';
 
-const STATS = [
-  { num: 20, unit: '号', label: 'いまいだよりを発行' },
-  { num: 30, unit: '+', label: 'の議会質問テーマ' },
-  { num: 5, unit: '年間', label: '継続して取り組み中' },
-] as const;
+function useCountUp(target: number, duration = 1100): [RefCallback<HTMLElement>, number] {
+  const [val, setVal] = useState(0);
+  const started = useRef(false);
+  const elRef = useRef<HTMLElement | null>(null);
+  const obsRef = useRef<IntersectionObserver | null>(null);
 
-function EventItem({ event }: { event: ChronoEvent }) {
+  useEffect(() => () => { obsRef.current?.disconnect(); }, []);
+
+  const setRef: RefCallback<HTMLElement> = useCallback((node) => {
+    obsRef.current?.disconnect();
+    elRef.current = node;
+    if (!node) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting || started.current) return;
+      started.current = true;
+      const start = performance.now();
+      (function frame(now: number) {
+        const t = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+        setVal(Math.round(ease * target));
+        if (t < 1) requestAnimationFrame(frame);
+      })(start);
+      obs.unobserve(node);
+    }, { threshold: 0.3 });
+    obs.observe(node);
+    obsRef.current = obs;
+  }, [target, duration]);
+
+  return [setRef, val];
+}
+
+function StatCard({ target, suffix, label }: { target: number; suffix: string; label: string }) {
+  const [ref, val] = useCountUp(target);
+  return (
+    <div
+      ref={ref}
+      className="rounded-[var(--r-md)] border border-[var(--border)] bg-white px-4 py-9 text-center transition duration-[400ms] ease-[var(--spring)] hover:-translate-y-[3px] hover:scale-[1.01] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+    >
+      <span className="font-en text-[clamp(2.8rem,5vw,3.8rem)] font-extrabold leading-none tracking-tight text-v2-pink">
+        {val}
+      </span>
+      <span className="ml-0.5 text-sm font-medium text-v2-pink-deep">{suffix}</span>
+      <p className="mt-2 text-[13px] leading-relaxed text-[var(--text-sub)]">{label}</p>
+    </div>
+  );
+}
+
+function EventItem({ ev }: { ev: ChronoEvent }) {
   const dotBase =
-    'absolute left-[-37px] top-[8px] rounded-full border-2 border-v2-cool';
-  const dotClass =
-    event.type === 'big'
-      ? 'absolute left-[-39px] top-[5px] h-3.5 w-3.5 rounded-full bg-v2-pink shadow-[0_0_0_4px_rgba(214,70,114,0.15)]'
-      : event.type === 'achievement'
-        ? `${dotBase} h-2.5 w-2.5 bg-v2-pink`
-        : event.type === 'start'
-          ? 'absolute left-[-38px] top-[6px] h-3 w-3 rounded-full bg-v2-blue border-2 border-v2-cool'
-          : `${dotBase} h-2.5 w-2.5 bg-[var(--border)]`;
+    'absolute h-[10px] w-[10px] rounded-full border-2 border-[var(--bg-cool)]';
+  const dotCls =
+    ev.type === 'start'
+      ? `${dotBase} bg-v2-blue -left-[37px] top-[8px] h-3 w-3 -left-[38px] top-[6px]`
+      : ev.type === 'big'
+        ? `${dotBase} bg-v2-pink -left-[39px] top-[5px] h-[14px] w-[14px] shadow-[0_0_0_4px_rgba(214,70,114,0.15)]`
+        : `${dotBase} bg-v2-pink -left-[37px] top-[8px]`;
 
   return (
     <div className="relative mb-5 last:mb-0">
-      <span className={dotClass} />
-
-      {event.type === 'start' && (
-        <>
-          {event.role && (
-            <p className="mb-1 text-xs font-medium tracking-[0.03em] text-[var(--text-muted)]">
-              {event.role}
-            </p>
-          )}
-          {event.headline && (
-            <h3 className="mb-1.5 text-[17px] font-bold leading-relaxed text-[var(--text)]">
-              {event.headline}
-            </h3>
-          )}
-          {event.body && (
-            <p className="text-sm leading-[1.85] text-[var(--text-sub)]">
-              {event.body}
-            </p>
-          )}
-        </>
+      <span className={dotCls} />
+      {ev.role && (
+        <p className="mb-1 text-xs font-medium tracking-[0.03em] text-[var(--text-muted)]">
+          {ev.role}
+        </p>
       )}
-
-      {(event.type === 'achievement' || event.type === 'big') && (
-        <>
-          <p
-            className={`flex items-start gap-2 font-bold leading-relaxed ${
-              event.type === 'big'
-                ? 'text-[16px] text-v2-pink-deep'
-                : 'text-[15px] text-[var(--text)]'
-            }`}
-          >
-            <span className="mt-[9px] inline-block h-1.5 w-1.5 flex-shrink-0 rounded-full bg-v2-pink" />
-            {event.achieve}
-          </p>
-          {event.detail && (
-            <p className="mt-1 pl-3.5 text-[13.5px] leading-[1.85] text-[var(--text-sub)]">
-              {event.detail}
-            </p>
-          )}
-        </>
+      {ev.headline && (
+        <h3 className="mb-1.5 text-[17px] font-bold leading-relaxed">{ev.headline}</h3>
+      )}
+      {ev.type === 'start' && ev.body && (
+        <p className="text-sm leading-[1.85] text-[var(--text-sub)]">{ev.body}</p>
+      )}
+      {ev.achieve && (
+        <p
+          className={`flex items-start gap-2 font-bold leading-relaxed ${ev.type === 'big' ? 'text-base text-v2-pink-deep' : 'text-[15px]'}`}
+        >
+          <span className="mt-[9px] flex h-1.5 w-1.5 shrink-0 rounded-full bg-v2-pink" />
+          {ev.achieve}
+        </p>
+      )}
+      {ev.detail && (
+        <p className="mt-1 pl-3.5 text-[13.5px] leading-[1.85] text-[var(--text-sub)]">
+          {ev.detail}
+        </p>
       )}
     </div>
   );
 }
 
 export default function Chronology() {
-  const [headerRef, headerVisible] = useReveal<HTMLDivElement>();
+  const [ref, visible] = useReveal();
 
   return (
-    <section className="bg-v2-cool py-[120px] max-md:py-[80px]">
-      <div className="mx-auto max-w-v2 px-[var(--gutter)] max-md:px-6">
-        {/* Header */}
-        <div ref={headerRef} className={`text-center ${revealClass(headerVisible)}`}>
+    <section className="bg-v2-cool py-20 md:py-[120px]">
+      <div className="mx-auto max-w-v2 px-[var(--gutter)]">
+        <div ref={ref} className={`text-center ${revealClass(visible)}`}>
           <p className="mb-1.5 text-[11px] font-semibold tracking-[0.14em] text-v2-pink">
             これまでの歩み
           </p>
-          <h2 className="mb-2 text-[clamp(1.15rem,2vw,1.4rem)] font-bold leading-relaxed text-[var(--text)]">
+          <h2 className="mb-2 text-[clamp(1.15rem,2vw,1.4rem)] font-bold leading-relaxed">
             現役ママの声を、地域発展に。
           </h2>
           <p className="text-sm leading-[1.9] text-[var(--text-sub)]">
             2021年の初当選から、暮らしの中の声に向き合ってきました。
           </p>
-
-          {/* Stats row — 年表ヘッダー直下に統合 */}
-          <div className="mt-10 grid grid-cols-3 gap-5 max-md:gap-3">
-            {STATS.map((s) => (
-              <StatCard key={s.label} stat={s} visible={headerVisible} />
-            ))}
-          </div>
         </div>
 
-        {/* Timeline */}
+        <div className="mt-10 grid grid-cols-3 gap-5">
+          <StatCard target={20} suffix="号" label="いまいだよりを発行" />
+          <StatCard target={30} suffix="+" label="の議会質問テーマ" />
+          <StatCard target={5} suffix="年間" label="継続して取り組み中" />
+        </div>
+
         <div className="mt-14">
-          {CHRONOLOGY.map((yearData) => (
-            <YearBlock key={yearData.year} data={yearData} />
-          ))}
+          {CHRONOLOGY.map((yr, yi) => {
+            const isLast = yi === CHRONOLOGY.length - 1;
+            return (
+              <div
+                key={yr.year}
+                className={`grid grid-cols-[56px_1fr] gap-0 md:grid-cols-[80px_1fr] ${isLast ? '' : 'pb-10'}`}
+              >
+                <div className="chrono-year-label relative pr-6 text-right md:pr-7">
+                  <span className="font-en text-base font-extrabold tracking-tight md:sticky md:top-[120px] md:text-xl">
+                    {yr.year}
+                  </span>
+                </div>
+                <div className="pl-6 pb-2 md:pl-8">
+                  {yr.events.map((ev, ei) => (
+                    <EventItem key={ei} ev={ev} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
-  );
-}
-
-function StatCard({
-  stat,
-  visible,
-}: {
-  stat: (typeof STATS)[number];
-  visible: boolean;
-}) {
-  const numRef = useRef<HTMLSpanElement>(null);
-  const counted = useRef(false);
-
-  useEffect(() => {
-    if (!visible || counted.current || !numRef.current) return;
-    counted.current = true;
-
-    const el = numRef.current;
-    const target = stat.num;
-    const dur = 1100;
-    const start = performance.now();
-
-    function frame(now: number) {
-      const t = Math.min((now - start) / dur, 1);
-      const ease = 1 - Math.pow(1 - t, 3);
-      el.textContent = String(Math.round(ease * target));
-      if (t < 1) requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-  }, [visible, stat.num]);
-
-  return (
-    <div className="rounded-[var(--r-md)] border border-[var(--border)] bg-white px-4 py-9 text-center transition-all duration-[400ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-[3px] hover:scale-[1.01] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-      <p className="leading-none">
-        <span
-          ref={numRef}
-          className="font-en text-[clamp(2.8rem,5vw,3.8rem)] font-extrabold tracking-tight text-v2-pink"
-        >
-          0
-        </span>
-        <span className="ml-0.5 text-sm font-medium text-v2-pink-deep">
-          {stat.unit}
-        </span>
-      </p>
-      <p className="mt-2 text-[13px] leading-relaxed text-[var(--text-sub)]">
-        {stat.label}
-      </p>
-    </div>
-  );
-}
-
-function YearBlock({ data }: { data: (typeof CHRONOLOGY)[number] }) {
-  const [ref, visible] = useReveal<HTMLDivElement>();
-
-  return (
-    <div
-      ref={ref}
-      className={`grid grid-cols-[80px_1fr] gap-0 pb-10 last:pb-0 max-md:grid-cols-[56px_1fr] ${revealClass(visible)}`}
-    >
-      {/* 左: 年号 + 縦線 */}
-      <div className="chrono-year-label relative pr-7 text-right">
-        <span className="font-en text-xl font-extrabold tracking-tight text-[var(--text)] max-md:text-base md:sticky md:top-[120px]">
-          {data.year}
-        </span>
-      </div>
-
-      {/* 右: イベント群 */}
-      <div className="pl-8 pb-2 max-md:pl-6">
-        {data.events.map((event, i) => (
-          <EventItem key={i} event={event} />
-        ))}
-      </div>
-    </div>
   );
 }

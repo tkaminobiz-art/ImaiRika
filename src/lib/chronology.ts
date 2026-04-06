@@ -1,7 +1,3 @@
-/**
- * 年表データ — HTML v2 プロトタイプ準拠
- */
-
 export type EventType = 'start' | 'achievement' | 'big';
 
 export interface ChronoEvent {
@@ -45,10 +41,7 @@ export const CHRONOLOGY: ChronoYear[] = [
   {
     year: '2022',
     events: [
-      {
-        type: 'start',
-        role: '文教常任委員会 委員長に',
-      },
+      { type: 'start', role: '文教常任委員会 委員長に' },
       {
         type: 'big',
         achieve: '全園にエアコンが設置されました',
@@ -66,10 +59,7 @@ export const CHRONOLOGY: ChronoYear[] = [
   {
     year: '2023',
     events: [
-      {
-        type: 'start',
-        role: '文教常任委員会 副委員長',
-      },
+      { type: 'start', role: '文教常任委員会 副委員長' },
       {
         type: 'achievement',
         achieve: '乗り合い交通の実証実験が始まりました',
@@ -81,10 +71,7 @@ export const CHRONOLOGY: ChronoYear[] = [
   {
     year: '2024',
     events: [
-      {
-        type: 'start',
-        role: '厚生常任委員会 委員長 / 議会広報委員長に',
-      },
+      { type: 'start', role: '厚生常任委員会 委員長 / 議会広報委員長に' },
       {
         type: 'big',
         achieve: '「こども食堂開催支援金」が創設されました',
@@ -96,10 +83,7 @@ export const CHRONOLOGY: ChronoYear[] = [
   {
     year: '2025',
     events: [
-      {
-        type: 'start',
-        role: '議会運営委員会 副委員長に',
-      },
+      { type: 'start', role: '議会運営委員会 副委員長に' },
       {
         type: 'achievement',
         achieve: 'タクシー事業者一覧が市のHPに掲載されました',

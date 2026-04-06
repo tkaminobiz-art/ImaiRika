@@ -8,12 +8,6 @@ interface UseRevealOptions {
   once?: boolean;
 }
 
-/**
- * IntersectionObserver ベースのスクロールrevealアニメーション
- * HTML v2 プロトタイプの .reveal / .visible に相当
- *
- * Returns a callback ref (compatible with all React versions) and visibility state.
- */
 export function useReveal<T extends HTMLElement = HTMLDivElement>(
   options: UseRevealOptions = {},
 ): [RefCallback<T>, boolean] {
@@ -22,7 +16,6 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(
   const elRef = useRef<T | null>(null);
   const obsRef = useRef<IntersectionObserver | null>(null);
 
-  // Clean up observer on unmount
   useEffect(() => {
     return () => {
       obsRef.current?.disconnect();
@@ -31,7 +24,6 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(
 
   const setRef: RefCallback<T> = useCallback(
     (node: T | null) => {
-      // Disconnect old observer
       if (obsRef.current) {
         obsRef.current.disconnect();
         obsRef.current = null;
@@ -40,7 +32,6 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(
       elRef.current = node;
       if (!node) return;
 
-      // Respect prefers-reduced-motion
       if (typeof window !== 'undefined') {
         const prefersReducedMotion = window.matchMedia(
           '(prefers-reduced-motion: reduce)',
@@ -70,9 +61,6 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(
   return [setRef, visible];
 }
 
-/**
- * reveal アニメーション用の className ヘルパー
- */
 export function revealClass(visible: boolean, delay?: number): string {
   const base =
     'transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]';
