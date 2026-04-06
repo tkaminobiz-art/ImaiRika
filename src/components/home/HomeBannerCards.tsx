@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 const cards = [
@@ -7,36 +6,32 @@ const cards = [
     title: '政策',
     sub: 'Policy',
     variant: 'policy' as const,
-    image: '/images/council_speaking-podium.jpg',
   },
   {
     href: '/newsletter',
     title: 'いまいだより',
     sub: 'Newsletter',
     variant: 'newsletter' as const,
-    image: '/images/council_first-day-documents.jpg',
   },
   {
     href: '/support',
     title: '応援する',
     sub: 'Support',
     variant: 'support' as const,
-    image: '/images/party_victory-celebration.jpg',
   },
   {
     href: '/contact',
     title: 'お問い合わせ',
     sub: 'Contact',
     variant: 'contact' as const,
-    image: '/images/dialogue_mama-meeting-main.jpg',
   },
 ];
 
-const variantOverlay: Record<(typeof cards)[number]['variant'], string> = {
-  policy: 'bg-v2-pink/70',
-  newsletter: 'bg-v2-blue/70',
-  support: 'bg-[#E07840]/70',
-  contact: 'bg-[#2BA58E]/70',
+const variantClass: Record<(typeof cards)[number]['variant'], string> = {
+  policy: 'bg-v2-pink',
+  newsletter: 'bg-v2-blue',
+  support: 'bg-[#E07840]',
+  contact: 'bg-[#2BA58E]',
 };
 
 export default function HomeBannerCards() {
@@ -47,16 +42,14 @@ export default function HomeBannerCards() {
           <Link
             key={c.href}
             href={c.href}
-            className="group relative flex h-[120px] flex-col justify-between overflow-hidden rounded-xl p-4 text-white shadow-none transition duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:scale-[1.015] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] md:h-[180px] md:rounded-[12px] md:p-6"
+            className={`group relative flex h-[120px] flex-col justify-between overflow-hidden rounded-xl p-4 text-white shadow-none transition duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:-translate-y-1 hover:scale-[1.015] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] md:h-[180px] md:rounded-[12px] md:p-6 ${variantClass[c.variant]}`}
           >
-            <Image
-              src={c.image}
-              alt=""
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 50vw, 25vw"
-            />
-            <span className={`absolute inset-0 ${variantOverlay[c.variant]}`} />
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -inset-2 rotate-[-15deg] break-all font-en text-[20px] font-black leading-snug tracking-wide text-white/[0.08] md:text-[28px]"
+            >
+              CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP CDP
+            </span>
             <span className="relative z-[1] font-sans text-lg font-bold leading-snug md:text-[22px]">
               {c.title}
             </span>
