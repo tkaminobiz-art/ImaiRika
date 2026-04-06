@@ -43,7 +43,7 @@ export const CONTACT = {
 } as const;
 
 export const SUPPORT_FORM_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLScZ5j3m9Wh9xPpTvGYVrHxQfECrBn8mFGBST6r_1lFY7k1c4Q/viewform';
+  'https://docs.google.com/forms/d/e/1FAIpQLSfDHkzsTiyIUl-gRuw66GbWOD95UZfcvs0CqIVVVOOqrsy3aQ/viewform';
 
 export const SITE_METADATA = {
   title: SITE.title,
