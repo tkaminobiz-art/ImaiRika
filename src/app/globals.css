@@ -24,6 +24,7 @@
   --border: #e8e4df;
 
   --header-h: 88px;
+  --gutter: 40px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -31,6 +32,7 @@
 @media (max-width: 900px) {
   :root {
     --header-h: 80px;
+    --gutter: 24px;
   }
 }
 
@@ -93,6 +95,36 @@ body::after {
   }
   .topics-swiper .swiper-pagination-bullet-active {
     background: #e74291;
+  }
+}
+
+/* Arrow bounce animation (Voice block) */
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ======================================================
+   CHRONOLOGY — 年表の縦線（Tailwindでは困難なため CSS で定義）
+   ====================================================== */
+.chrono-year-label::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: -40px;
+  width: 2px;
+  background: var(--blue);
+  opacity: 0.25;
+}
+/* 最後の年は底まで */
+.chrono-year-label:last-of-type::after {
+  bottom: 0;
+}
+/* 900px以下でdot位置を調整 */
+@media (max-width: 900px) {
+  .chrono-year-label::after {
+    bottom: -40px;
   }
 }
 

@@ -29,8 +29,8 @@ export default function HeroFull() {
         <img
           src="/images/fv_pc.jpg"
           alt="今井りか 橿原市議会議員"
-          width={1024}
-          height={571}
+          width={1920}
+          height={814}
           className="fv-img block w-full max-h-[82vh] object-cover object-top"
           loading="eager"
           fetchPriority="high"
