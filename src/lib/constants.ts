@@ -54,8 +54,8 @@ export const SITE_METADATA = {
 } as const;
 
 export const NAV_ITEMS = [
-  { href: '/news', label: '活動報告' },
   { href: '/policy', label: '政策' },
   { href: '/profile', label: 'プロフィール' },
   { href: '/newsletter', label: 'いまいだより' },
+  { href: '/assembly', label: '議会動画' },
 ] as const;
