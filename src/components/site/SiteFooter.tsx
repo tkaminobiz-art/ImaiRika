@@ -9,6 +9,9 @@ export default function SiteFooter() {
       <p className="mt-1 text-white/50">
         {SITE.position} {SITE.name}
       </p>
+      <p className="mt-3 text-white/60">
+        本ウェブサイトの制作には政務活動費を使用しています。
+      </p>
     </footer>
   );
 }
