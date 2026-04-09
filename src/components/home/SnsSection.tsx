@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useReveal, revealClass } from '@/hooks/useReveal';
+import { SnsIconInstagram, SnsIconX } from '@/components/ui/SnsBrandIcons';
 import { SNS_LINKS } from '@/lib/constants';
 
 export default function SnsSection() {
@@ -27,6 +28,9 @@ export default function SnsSection() {
                 sizes="64px"
               />
             </div>
+            <span className="text-text-body">
+              <SnsIconX className="mx-auto h-10 w-10" />
+            </span>
             <span className="text-sm text-[var(--text-muted)]">
               X ({SNS_LINKS.x.handle})
             </span>
@@ -49,6 +53,9 @@ export default function SnsSection() {
                 sizes="64px"
               />
             </div>
+            <span className="text-text-body">
+              <SnsIconInstagram className="mx-auto h-10 w-10" />
+            </span>
             <span className="text-sm text-[var(--text-muted)]">
               Instagram ({SNS_LINKS.instagram.handle})
             </span>

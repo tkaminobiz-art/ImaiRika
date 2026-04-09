@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { SnsIconInstagram, SnsIconX } from '@/components/ui/SnsBrandIcons';
 import { SNS_LINKS, CONTACT } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -62,27 +63,35 @@ export default function ContactPage() {
             <p className="mt-2 break-all text-lg text-text-body">{CONTACT.email}</p>
           </a>
           <div className="rounded-xl border border-black/10 bg-section-gray p-6">
-            <p className="mb-2 text-sm font-bold text-shio-heading">SNS</p>
-            <p>
+            <p className="mb-4 text-sm font-bold text-shio-heading">SNS</p>
+            <div className="flex flex-col gap-4">
               <a
                 href={SNS_LINKS.x.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-shio-blue underline-offset-2 hover:underline"
+                className="flex items-center gap-4 text-shio-blue underline-offset-2 transition hover:underline"
               >
-                X {SNS_LINKS.x.handle}
+                <span className="inline-flex shrink-0 text-text-body">
+                  <SnsIconX className="h-9 w-9" />
+                </span>
+                <span className="text-lg font-medium">
+                  X {SNS_LINKS.x.handle}
+                </span>
               </a>
-            </p>
-            <p className="mt-2">
               <a
                 href={SNS_LINKS.instagram.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-shio-blue underline-offset-2 hover:underline"
+                className="flex items-center gap-4 text-shio-blue underline-offset-2 transition hover:underline"
               >
-                Instagram {SNS_LINKS.instagram.handle}
+                <span className="inline-flex shrink-0 text-text-body">
+                  <SnsIconInstagram className="h-9 w-9" />
+                </span>
+                <span className="text-lg font-medium">
+                  Instagram {SNS_LINKS.instagram.handle}
+                </span>
               </a>
-            </p>
+            </div>
           </div>
         </div>
       </div>
