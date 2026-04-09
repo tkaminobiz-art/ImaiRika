@@ -4,8 +4,7 @@ import { FileText } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'いまいだより',
-  description:
-    '今井りかの市政報告「いまいだより」バックナンバー。Vol.1〜Vol.18のPDFをご覧いただけます。',
+  description: '今井りかの市政報告「いまいだより」バックナンバー。Vol.1〜Vol.18のPDFをご覧いただけます。',
 };
 
 type Issue = {
@@ -42,6 +41,7 @@ export default function NewsletterPage() {
   return (
     <div className="bg-section-gray pb-20 pt-8">
       <div className="mx-auto max-w-content px-4 md:px-6">
+        {/* パンくず */}
         <nav className="mb-8 text-sm text-text-body/80">
           <Link href="/" className="hover:text-shio-heading">
             TOP
@@ -50,6 +50,7 @@ export default function NewsletterPage() {
           <span>いまいだより</span>
         </nav>
 
+        {/* ヘッダー */}
         <h1 className="mb-2 text-3xl font-bold text-shio-heading md:text-4xl">
           いまいだより
         </h1>
@@ -62,6 +63,7 @@ export default function NewsletterPage() {
           各号のPDFをタップすると、新しいタブで開きます。
         </p>
 
+        {/* グリッド */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {ISSUES.map((issue) => (
             <a
@@ -71,6 +73,7 @@ export default function NewsletterPage() {
               rel="noopener noreferrer"
               className="group relative flex flex-col rounded-xl border border-black/10 bg-white p-5 shadow-sm transition hover:border-shio-accent hover:shadow-md"
             >
+              {/* バッジ */}
               {issue.badge && (
                 <span className="absolute -top-2 right-3 rounded-full bg-shio-accent px-2.5 py-0.5 text-[11px] font-bold text-white">
                   {issue.badge}
@@ -89,14 +92,7 @@ export default function NewsletterPage() {
 
               <span className="mt-auto flex items-center gap-1.5 pt-4 text-sm font-bold text-shio-accent transition-all group-hover:gap-2.5">
                 PDFを開く
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
-                  className="h-3.5 w-3.5"
-                  aria-hidden
-                >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} className="h-3.5 w-3.5" aria-hidden>
                   <path d="M7 17L17 7M17 7H7M17 7v10" />
                 </svg>
               </span>
@@ -104,6 +100,7 @@ export default function NewsletterPage() {
           ))}
         </div>
 
+        {/* フッター注記 */}
         <div className="mt-12 rounded-lg bg-white/80 p-6 text-center">
           <p className="text-sm text-text-body/70">
             Vol.1（2021年夏号）から継続して発行しています。

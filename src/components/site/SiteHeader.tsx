@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
-import { SnsIconInstagram, SnsIconX } from '@/components/ui/SnsBrandIcons';
+import { Instagram, Menu, X } from 'lucide-react';
 import { NAV_ITEMS, SNS_LINKS } from '@/lib/constants';
 
 export default function SiteHeader() {
@@ -20,24 +19,32 @@ export default function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-[100] bg-v2-blue text-white transition-shadow duration-[400ms] ${scrolled ? 'shadow-[0_2px_16px_rgba(0,0,0,0.15)]' : ''}`}
     >
-      <div className="flex items-center justify-end gap-5 border-b border-white/[0.12] px-6 py-2 md:px-10">
+      <div className="flex justify-end items-center gap-4 border-b border-white/[0.12] px-6 py-2 md:px-10">
         <a
           href={SNS_LINKS.x.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center rounded-md p-2 text-white/75 transition hover:text-white"
+          className="text-white/70 transition hover:text-white"
           aria-label={SNS_LINKS.x.label}
         >
-          <SnsIconX className="h-8 w-8" />
+          {/* X (Twitter) ロゴ */}
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="h-4 w-4"
+            aria-hidden
+          >
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
         </a>
         <a
           href={SNS_LINKS.instagram.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center rounded-md p-2 text-white/75 transition hover:text-white"
+          className="text-white/70 transition hover:text-white"
           aria-label={SNS_LINKS.instagram.label}
         >
-          <SnsIconInstagram className="h-8 w-8" />
+          <Instagram className="h-4 w-4" aria-hidden />
         </a>
       </div>
 

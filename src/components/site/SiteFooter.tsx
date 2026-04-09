@@ -10,7 +10,7 @@ export default function SiteFooter() {
         {SITE.position} {SITE.name}
       </p>
       <p className="mt-3 text-white/60">
-        本ウェブサイトの制作には按分算出に基づき政務活動費を使用しています。
+        本ウェブサイトの制作には政務活動費を使用しています。
       </p>
     </footer>
   );
