@@ -19,7 +19,6 @@ export const HOME = {
   profileTeaserLead:
     '「おかしいな」と思ったこと、ありませんか。子育ての現場から、声を届けています。',
   linkBanners: [
-    { title: '立憲民主党', href: 'https://cdp-japan.jp/', external: true },
     { title: 'いまいだより', href: '/newsletter', external: false },
     { title: 'YouTube', href: 'https://www.youtube.com/@user-jd2gw4qx2c', external: true },
   ],
