@@ -60,7 +60,7 @@ export default function NewsletterSection() {
             href="/newsletter"
             className="inline-flex items-center gap-2 text-sm font-semibold tracking-[0.04em] text-v2-pink transition hover:gap-3 hover:text-v2-pink-deep"
           >
-            バックナンバーを見る（全19号）
+            バックナンバーを見る（Vol.18まで）
             <svg
               viewBox="0 0 24 24"
               fill="none"

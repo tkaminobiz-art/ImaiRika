@@ -111,7 +111,7 @@ export default function Chronology() {
         </div>
 
         <div className="mt-10 grid grid-cols-3 gap-5">
-          <StatCard target={20} suffix="号" label="いまいだよりを発行" />
+          <StatCard target={18} suffix="号" label="いまいだよりを発行" />
           <StatCard target={30} suffix="+" label="の議会質問テーマ" />
           <StatCard target={5} suffix="年間" label="継続して取り組み中" />
         </div>

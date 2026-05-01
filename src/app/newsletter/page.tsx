@@ -55,12 +55,14 @@ export default function NewsletterPage() {
           いまいだより
         </h1>
         <p className="mb-4 text-lg font-semibold text-shio-accent">
-          全{ISSUES.length}号のバックナンバー
+          Vol.18（通常会報・2026年冬号）が最新
         </p>
         <p className="mb-10 leading-relaxed text-text-body">
-          定例会ごとに、議会での質問や活動をわかりやすくまとめてお届けしています。
+          公開PDFが全てです（ファイル {ISSUES.length}
+          件：いまいだよりVol.1〜18および選挙チラシ等）。
           <br className="hidden md:inline" />
-          各号のPDFをタップすると、新しいタブで開きます。
+          <br />
+          定例会ごとに、議会での質問や活動をわかりやすくまとめてお届けしています。各項目のPDFをタップすると、新しいタブで開きます。
         </p>
 
         {/* グリッド */}

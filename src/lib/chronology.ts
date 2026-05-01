@@ -92,7 +92,7 @@ export const CHRONOLOGY: ChronoYear[] = [
       },
       {
         type: 'achievement',
-        achieve: '「いまいだより」が20号になりました',
+        achieve: '「いまいだより」が18号になりました',
         detail:
           '定例会ごとに、議会での質問や活動をまとめてお届けしてきた「いまいだより」。5年間で30を超えるテーマを取り上げてきました。',
       },
