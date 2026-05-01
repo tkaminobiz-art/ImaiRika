@@ -28,7 +28,11 @@ export const COLORS = {
 } as const;
 
 export const SNS_LINKS = {
-  x: { url: 'https://twitter.com/imirk411', label: 'X', handle: '@imirk411' },
+  facebook: {
+    url: 'https://www.facebook.com/rika.konishi',
+    label: 'Facebook',
+    handle: 'rika.konishi',
+  },
   instagram: {
     url: 'https://www.instagram.com/imai_rika_0411/',
     label: 'Instagram',

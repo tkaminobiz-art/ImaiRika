@@ -10,16 +10,16 @@ export default function SnsColumns() {
         <div className="grid gap-8 md:grid-cols-2">
           <div className="min-h-[320px] rounded-xl border border-black/10 bg-section-gray/50 p-4">
             <p className="mb-4 text-center text-sm font-bold text-text-body">
-              {SNS_LINKS.x.label} {SNS_LINKS.x.handle}
+              {SNS_LINKS.facebook.label} {SNS_LINKS.facebook.handle}
             </p>
             <div className="flex min-h-[260px] items-center justify-center rounded-lg bg-white p-4 text-center text-sm text-text-body/80">
               <a
-                href={SNS_LINKS.x.url}
+                href={SNS_LINKS.facebook.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full bg-shio-accent px-6 py-3 font-bold text-white hover:brightness-95"
+                className="rounded-full bg-[#1877F2] px-6 py-3 font-bold text-white hover:bg-[#166fe5]"
               >
-                X でフォローする
+                Facebook でフォローする
               </a>
             </div>
           </div>

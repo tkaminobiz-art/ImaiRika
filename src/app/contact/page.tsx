@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SnsIconInstagram, SnsIconX } from '@/components/ui/SnsBrandIcons';
+import { SnsIconFacebook, SnsIconInstagram } from '@/components/ui/SnsBrandIcons';
 import { SNS_LINKS, CONTACT } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -66,16 +66,16 @@ export default function ContactPage() {
             <p className="mb-4 text-sm font-bold text-shio-heading">SNS</p>
             <div className="flex flex-col gap-4">
               <a
-                href={SNS_LINKS.x.url}
+                href={SNS_LINKS.facebook.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 text-shio-blue underline-offset-2 transition hover:underline"
               >
                 <span className="inline-flex shrink-0 text-text-body">
-                  <SnsIconX className="h-9 w-9" />
+                  <SnsIconFacebook className="h-9 w-9" strokeWidth={1.85} />
                 </span>
                 <span className="text-lg font-medium">
-                  X {SNS_LINKS.x.handle}
+                  Facebook {SNS_LINKS.facebook.handle}
                 </span>
               </a>
               <a
@@ -85,7 +85,7 @@ export default function ContactPage() {
                 className="flex items-center gap-4 text-shio-blue underline-offset-2 transition hover:underline"
               >
                 <span className="inline-flex shrink-0 text-text-body">
-                  <SnsIconInstagram className="h-9 w-9" />
+                  <SnsIconInstagram className="h-9 w-9" strokeWidth={1.85} />
                 </span>
                 <span className="text-lg font-medium">
                   Instagram {SNS_LINKS.instagram.handle}

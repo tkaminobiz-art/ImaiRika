@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useReveal, revealClass } from '@/hooks/useReveal';
-import { SnsIconInstagram, SnsIconX } from '@/components/ui/SnsBrandIcons';
+import { SnsIconFacebook, SnsIconInstagram } from '@/components/ui/SnsBrandIcons';
 import { SNS_LINKS } from '@/lib/constants';
 
 export default function SnsSection() {
@@ -29,16 +29,16 @@ export default function SnsSection() {
               />
             </div>
             <span className="text-text-body">
-              <SnsIconX className="mx-auto h-10 w-10" />
+              <SnsIconFacebook className="mx-auto h-11 w-11" strokeWidth={1.75} />
             </span>
             <span className="text-sm text-[var(--text-muted)]">
-              X ({SNS_LINKS.x.handle})
+              Facebook ({SNS_LINKS.facebook.handle})
             </span>
             <a
-              href={SNS_LINKS.x.url}
+              href={SNS_LINKS.facebook.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-black px-6 py-2 text-xs font-bold text-white transition hover:bg-black/80"
+              className="rounded-full bg-[#1877F2] px-6 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#166fe5]"
             >
               フォローする
             </a>
@@ -54,7 +54,7 @@ export default function SnsSection() {
               />
             </div>
             <span className="text-text-body">
-              <SnsIconInstagram className="mx-auto h-10 w-10" />
+              <SnsIconInstagram className="mx-auto h-11 w-11" strokeWidth={1.75} />
             </span>
             <span className="text-sm text-[var(--text-muted)]">
               Instagram ({SNS_LINKS.instagram.handle})

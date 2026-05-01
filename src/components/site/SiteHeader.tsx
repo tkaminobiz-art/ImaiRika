@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Instagram, Menu, X } from 'lucide-react';
+import { Menu, X as CloseMenuIcon } from 'lucide-react';
+import { SnsIconFacebook, SnsIconInstagram } from '@/components/ui/SnsBrandIcons';
 import { NAV_ITEMS, SNS_LINKS } from '@/lib/constants';
 
 export default function SiteHeader() {
@@ -19,32 +20,24 @@ export default function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-[100] bg-v2-blue text-white transition-shadow duration-[400ms] ${scrolled ? 'shadow-[0_2px_16px_rgba(0,0,0,0.15)]' : ''}`}
     >
-      <div className="flex justify-end items-center gap-4 border-b border-white/[0.12] px-6 py-2 md:px-10">
+      <div className="flex justify-end items-center gap-6 border-b border-white/[0.12] px-6 py-2.5 md:px-10">
         <a
-          href={SNS_LINKS.x.url}
+          href={SNS_LINKS.facebook.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white/70 transition hover:text-white"
-          aria-label={SNS_LINKS.x.label}
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-white/85 transition hover:text-white"
+          aria-label={`${SNS_LINKS.facebook.label}（${SNS_LINKS.facebook.handle}）`}
         >
-          {/* X (Twitter) ロゴ */}
-          <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="h-4 w-4"
-            aria-hidden
-          >
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
+          <SnsIconFacebook className="h-9 w-9 shrink-0" strokeWidth={1.85} />
         </a>
         <a
           href={SNS_LINKS.instagram.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-white/70 transition hover:text-white"
-          aria-label={SNS_LINKS.instagram.label}
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-white/85 transition hover:text-white"
+          aria-label={`${SNS_LINKS.instagram.label}（${SNS_LINKS.instagram.handle}）`}
         >
-          <Instagram className="h-4 w-4" aria-hidden />
+          <SnsIconInstagram className="h-9 w-9 shrink-0" strokeWidth={1.85} />
         </a>
       </div>
 
@@ -110,7 +103,7 @@ export default function SiteHeader() {
                 className="p-2 text-text-body"
                 aria-label="閉じる"
               >
-                <X className="h-6 w-6" />
+                <CloseMenuIcon className="h-6 w-6" />
               </button>
             </div>
             <nav className="flex flex-col gap-4">
