@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { useReveal, revealClass } from '@/hooks/useReveal';
 
 const vols = [
-  { vol: '第18号', sub: '最新号', image: '/images/hero_slogan-board-green.jpg', pdf: '/pdf/vol18_2026fuyu.pdf' },
+  { vol: '第19号', sub: '最新号', image: '/images/newsletter/vol19_2026natsu_front.png', pdf: '/pdf/vol19_2026natsu.pdf' },
+  { vol: '第18号', sub: '2026年冬号', image: '/images/hero_slogan-board-green.jpg', pdf: '/pdf/vol18_2026fuyu.pdf' },
   { vol: '第17号', sub: '2025年秋号', image: '/images/community_facility-visit-nara.jpg', pdf: '/pdf/vol17_2025aki.pdf' },
   { vol: '第16号', sub: '2025年夏号', image: '/images/community_shaved-ice-serving.jpg', pdf: '/pdf/vol16_2025natsu.pdf' },
-  { vol: '第15号', sub: '2025年春号', image: '/images/humanrights_event-closeup.jpg', pdf: '/pdf/vol15_2025haru.pdf' },
 ];
 
 export default function NewsletterSection() {
@@ -60,7 +60,7 @@ export default function NewsletterSection() {
             href="/newsletter"
             className="inline-flex items-center gap-2 text-sm font-semibold tracking-[0.04em] text-v2-pink transition hover:gap-3 hover:text-v2-pink-deep"
           >
-            バックナンバーを見る（Vol.18まで）
+            バックナンバーを見る（Vol.19まで）
             <svg
               viewBox="0 0 24 24"
               fill="none"

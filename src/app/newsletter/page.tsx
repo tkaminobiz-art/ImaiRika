@@ -4,7 +4,7 @@ import { FileText } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'いまいだより',
-  description: '今井りかの市政報告「いまいだより」バックナンバー。Vol.1〜Vol.18のPDFをご覧いただけます。',
+  description: '今井りかの市政報告「いまいだより」バックナンバー。Vol.1〜Vol.19のPDFをご覧いただけます。',
 };
 
 type Issue = {
@@ -16,7 +16,8 @@ type Issue = {
 };
 
 const ISSUES: Issue[] = [
-  { vol: 18, title: '2026年冬号', date: '2026.01', pdf: '/pdf/vol18_2026fuyu.pdf', badge: '最新号' },
+  { vol: 19, title: '2026年夏号', date: '2026.07', pdf: '/pdf/vol19_2026natsu.pdf', badge: '最新号' },
+  { vol: 18, title: '2026年冬号', date: '2026.01', pdf: '/pdf/vol18_2026fuyu.pdf' },
   { vol: 17, title: '2025年秋号', date: '2025.10', pdf: '/pdf/vol17_2025aki.pdf' },
   { vol: 16, title: '2025年夏号', date: '2025.08', pdf: '/pdf/vol16_2025natsu.pdf' },
   { vol: 15, title: '2025年春号', date: '2025.06', pdf: '/pdf/vol15_2025haru.pdf' },
@@ -55,11 +56,11 @@ export default function NewsletterPage() {
           いまいだより
         </h1>
         <p className="mb-4 text-lg font-semibold text-shio-accent">
-          Vol.18（通常会報・2026年冬号）が最新
+          Vol.19（通常会報・2026年夏号）が最新
         </p>
         <p className="mb-10 leading-relaxed text-text-body">
           公開PDFが全てです（ファイル {ISSUES.length}
-          件：いまいだよりVol.1〜18および選挙チラシ等）。
+          件：いまいだよりVol.1〜19および選挙チラシ等）。
           <br className="hidden md:inline" />
           <br />
           定例会ごとに、議会での質問や活動をわかりやすくまとめてお届けしています。各項目のPDFをタップすると、新しいタブで開きます。
