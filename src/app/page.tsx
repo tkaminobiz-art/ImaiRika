@@ -13,6 +13,9 @@ import LinkBannerRow from '@/components/home/LinkBannerRow';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
+  verification: {
+    google: 'Q43WtuGY26r2OZPV3P0w5o6AvR_yZJBT67wXPCxnSis',
+  },
   title: {
     absolute: '今井りか | 生活者の立場から、社会の矛盾を。',
   },
