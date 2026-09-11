@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { SNS_LINKS } from '@/lib/constants';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/assembly' },
   title: '議会動画',
 };
 

@@ -12,6 +12,7 @@ import CtaSection from '@/components/home/CtaSection';
 import LinkBannerRow from '@/components/home/LinkBannerRow';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/' },
   title: {
     absolute: '今井りか | 生活者の立場から、社会の矛盾を。',
   },

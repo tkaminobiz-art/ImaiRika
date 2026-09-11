@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { FileText } from 'lucide-react';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/newsletter' },
   title: 'いまいだより',
   description: '今井りかの市政報告「いまいだより」バックナンバー。Vol.1〜Vol.19のPDFをご覧いただけます。',
 };

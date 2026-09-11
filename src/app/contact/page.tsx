@@ -5,6 +5,7 @@ import { SnsIconFacebook, SnsIconInstagram } from '@/components/ui/SnsBrandIcons
 import { SNS_LINKS, CONTACT } from '@/lib/constants';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/contact' },
   title: 'お問い合わせ',
 };
 

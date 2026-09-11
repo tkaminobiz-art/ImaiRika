@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { SUPPORT_FORM_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/support' },
   title: '応援する',
 };
 

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { NEWS_ITEMS } from '@/lib/copy';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/news' },
   title: '活動報告',
 };
 

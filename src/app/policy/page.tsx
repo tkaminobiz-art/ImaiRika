@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { POLICY_PILLARS } from '@/lib/copy';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/policy' },
   title: '政策',
   description:
     '暮らしの中の「気になること」から始まった、3つの柱。こども・子育て、地域、対話と発信。',

@@ -53,7 +53,7 @@ export const SITE_METADATA = {
   title: SITE.title,
   description:
     '橿原市議会議員 今井りかの公式サイト。こども・子育て、地域、対話と発信の3つの柱で橿原市の発展に取り組みます。',
-  url: 'https://imai-rika.com',
+  url: 'https://www.imai-rika.com',
   locale: 'ja_JP',
 } as const;
 
