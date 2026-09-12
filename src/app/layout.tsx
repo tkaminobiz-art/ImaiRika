@@ -36,6 +36,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_METADATA.url),
+  referrer: 'no-referrer',
   title: {
     default: SITE_METADATA.title,
     template: '%s | ' + SITE_METADATA.title,

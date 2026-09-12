@@ -10,10 +10,9 @@ import {
 } from '@/lib/analytics-consent';
 
 type Props = {
-  onConsentChange?: (choice: ConsentChoice) => void;
+  onConsentChange?: (choice: ConsentChoice, persisted?: boolean) => void;
 };
 
-// Mount alongside the analytics adapter only after the real measurement ID is confirmed.
 // This component stores choices and reports changes; it never loads or sends analytics.
 export default function AnalyticsConsent({ onConsentChange }: Props) {
   const [ready, setReady] = useState(false);
@@ -63,7 +62,7 @@ export default function AnalyticsConsent({ onConsentChange }: Props) {
     const saved = saveAnalyticsConsent(next);
     setChoice(next);
     setStorageError(!saved);
-    if (next !== choice) changeHandler.current?.(next);
+    if (next !== choice || storageError) changeHandler.current?.(next, saved);
     if (saved) closePanel();
   }
 
@@ -112,12 +111,16 @@ export default function AnalyticsConsent({ onConsentChange }: Props) {
             <p className="mt-2 text-sm leading-7">{ANALYTICS_COPY.description}</p>
             <p className="text-sm leading-7">{ANALYTICS_COPY.dataNotice}</p>
             <p className="text-sm leading-7">{ANALYTICS_COPY.settingsNotice}</p>
+            <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="text-sm text-v2-blue underline underline-offset-4">
+              {ANALYTICS_COPY.googlePrivacy}
+            </a>
             {choice !== null && (
               <p className="mt-2 text-sm font-bold" role="status">
                 {choice === 'granted' ? ANALYTICS_COPY.granted : ANALYTICS_COPY.denied}
               </p>
             )}
             {storageError && <p className="mt-2 text-sm text-red-800" role="alert">{ANALYTICS_COPY.storageError}</p>}
+            {choice === 'granted' && <p className="mt-2 text-sm leading-7">{ANALYTICS_COPY.withdrawNotice}</p>}
             <div className="mt-4 grid grid-cols-2 gap-3 md:max-w-md">
               <button type="button" onClick={() => choose('denied')} className={actionClass}>
                 {choice === 'granted' ? ANALYTICS_COPY.withdraw : ANALYTICS_COPY.decline}

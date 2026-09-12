@@ -1,5 +1,6 @@
 import React from 'react';
 import { SITE } from '@/lib/constants';
+import SiteAnalytics from './SiteAnalytics';
 
 export default function SiteFooter() {
   const y = new Date().getFullYear();
@@ -12,6 +13,7 @@ export default function SiteFooter() {
       <p className="mt-3 text-white/60">
         本ウェブサイトの制作には政務活動費を使用しています。
       </p>
+      <SiteAnalytics />
     </footer>
   );
 }
